@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function UserProfile(props) {
+export default function InstructorProfile(props) {
   return (
-    <form className="userProfile">
+    <form className="instructorProfile">
       <label>
         Name:
         <label>
