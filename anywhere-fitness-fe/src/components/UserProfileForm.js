@@ -17,26 +17,7 @@ export default function UserProfile(props) {
           Birthday:
           <input type="date" name="user_birthday" />
         </label>
-        <label>
-          Address:
-          <label>
-            Street:
-            <input type="text" name="street_address" />
-          </label>
-          <label>
-            City:
-            <input type="text" name="user_city" />
-          </label>
-          <label>
-            State:
-            <input type="text" name="user_state" />
-          </label>
-          <label>
-            Zip:
-            <input type="text" name="user_zip" />
-          </label>
-          <button name="user_edit">Edit</button>
-        </label>
+        <button name="user_edit">Edit</button>
       </label>
     </form>
   );
