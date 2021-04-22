@@ -14,6 +14,10 @@ export default function UserProfile(props) {
           <input type="text" name="last_name" />
         </label>
         <label>
+          Age:
+          <input name="user_age" />
+        </label>
+        <label>
           Birthday:
           <input type="date" name="user_birthday" />
         </label>
