@@ -2,28 +2,28 @@ import React, { useEffect, useState } from 'react'
 import Course from './Course'
 
 const CourseList = () => {
-  const [coursees, setCoursees] = useState([])
+  const [courses, setCourses] = useState([])
 
   useEffect(() => {
-    getCoursees()
+    getCourses()
   }, [])
 
-  const getCoursees = () => {
+  const getCourses = () => {
     const axios = axiosWithAuth()
     axios.get('')
       .then(res => {
-        console.log('getCoursees results', res)
-        setCoursees(res.data)
+        console.log('getCourses results', res)
+        setCourses(res.data)
       })
       .catch(err => console.log(err))
   }
 
   return (
     <div>
-      <div className='coursees'>
+      <div className='courses'>
         {
-          coursees &&
-          coursees.map((course, index) => {
+          courses &&
+          courses.map((course, index) => {
             return <Course course={course} key={index} />
           })
         }
