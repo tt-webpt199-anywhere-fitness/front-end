@@ -1,6 +1,5 @@
 import './App.css';
 import { Route, Switch, Link, useHistory, useLocation } from "react-router-dom";
-import HomePage from './components/HomePage';
 import CourseList from './components/CourseList';
 import Course from "./components/Course";
 import ProtectedRoute from './components/ProtectedRoute';
@@ -32,7 +31,6 @@ function App() {
         </nav>
       </header>
       <Switch>
-        <Route exact path = "/"/><HomePage /><Route/>
         <ProtectedRoute exact path='/classes' component={CourseList} />
         <Route path= "/login" component={Login}/>
         <Route path= "/register" component={Register}/>
