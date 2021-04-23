@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Course from './Course'
+import axiosWithAuth from '../utils/axiosWithAuth'
 
 const CourseList = () => {
   const [courses, setCourses] = useState([])
@@ -10,12 +11,12 @@ const CourseList = () => {
 
   const getCourses = () => {
     const axios = axiosWithAuth()
-    axios.get('')
-      .then(res => {
-        console.log('getCourses results', res)
-        setCourses(res.data)
-      })
-      .catch(err => console.log(err))
+    // axios.get('')
+    //   .then(res => {
+    //     console.log('getCourses results', res)
+    //     setCourses(res.data)
+    //   })
+    //   .catch(err => console.log(err))
   }
 
   return (
