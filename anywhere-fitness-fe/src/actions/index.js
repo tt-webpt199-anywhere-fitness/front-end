@@ -17,7 +17,7 @@ export const getCourses = () => {
 			})
 			.catch((err) => {
 				console.error('unable to pull course data', err.message);
-				dispatch({ type: FETCH_ERROR, payload: err.message });
+				dispatch({ type: ERROR, payload: err.message });
 			});
 	};
 };
@@ -29,12 +29,12 @@ export const addNewCourse = (course) => {
 			.post(`/`, course)
 			.then((res) => {
 				console.log('Course data added to API =====> ', course);
-				dispatch({ type: ADD_SUCCESS, payload: res.data });
+				dispatch({ type: SUCCESS, payload: res.data });
 				return res.data;
 			})
 			.catch((err) => {
 				console.error('unable to add course data', err.message);
-				dispatch({ type: FETCH_ERROR, payload: err.message });
+				dispatch({ type: ERROR, payload: err.message });
 			});
 	};
 };
