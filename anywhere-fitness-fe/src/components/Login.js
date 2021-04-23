@@ -12,7 +12,7 @@ export default function Login(){
 
     const onChange = e => {
         e.persist()
-        let value = e.target.type === "radio" ? e.target.checked : e.target.value
+        let value = e.target.type === e.target.value
         setInitialValue({
             ...initialValue, 
             [e.target.name] : value
