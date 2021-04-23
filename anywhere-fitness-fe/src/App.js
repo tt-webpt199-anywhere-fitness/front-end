@@ -1,8 +1,9 @@
 import './App.css';
 import { Route, Switch, Link, useHistory } from "react-router-dom";
 import HomePage from './components/HomePage';
-import CourseList from './components/CourseList'
+import CourseList from './components/CourseList';
 import Course from "./components/Course";
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
