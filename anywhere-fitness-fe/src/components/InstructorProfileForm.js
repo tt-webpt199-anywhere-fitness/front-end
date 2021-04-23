@@ -1,4 +1,5 @@
 import React from "react";
+import Course from "./Course";
 
 export default function InstructorProfile(props) {
   const { instructor, instructorCourses, change, submit } = props;
