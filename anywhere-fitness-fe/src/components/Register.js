@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import { useHistory } from 'react-router';
 
 const initialValue = {
   username: "",
@@ -10,9 +11,15 @@ const initialValue = {
 
 export default function Register() {
   const [newUser, setNewUser] = useState(initialValue)
+  const history = useHistory()
 
   const onChange = e => {
-    // let value = e.target.type === "radio" ? e.target.checked : e.target.value
+    if (e.target.type === 'checkbox') {
+      setNewUser({
+      ...newUser,
+      [e.target.name]: !e.target.value
+    })
+    }
     setNewUser({
       ...newUser,
       [e.target.name]: e.target.value
@@ -23,9 +30,10 @@ export default function Register() {
   const onSubmit = e => {
     e.preventDefault()
     console.log(newUser)
-    axios.post(`https://anywhere-fitness-wpt199-be.herokuapp.com/api/auth/register`, initialValue)
+    axios.post(`https://anywhere-fitness-wpt199-be.herokuapp.com/api/auth/register`, newUser)
       .then(res => {
         console.log(res.data)
+        history.push('/login')
       })
       .catch(error => console.log(error))
   }

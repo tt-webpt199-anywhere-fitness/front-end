@@ -25,7 +25,9 @@ export default function Login() {
     axios.post(`https://anywhere-fitness-wpt199-be.herokuapp.com/api/auth/login`, credentials)
       .then(res => {
         console.log(res)
-        console.log(res.data.token)
+        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('role', res.data.role)
+        history.push('/classes')
       })
       .catch(error => console.log(error))
   }
