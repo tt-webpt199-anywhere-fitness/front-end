@@ -1,83 +1,71 @@
 import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import { useHistory } from 'react-router';
 
+const initialValue = {
+  username: "",
+  password: ""
+}
 
-export default function Login(){
-    const [initialValue, setInitialValue] = useState({
-        user_name: "",
-        email_address: "",
-        password: ""
+export default function Login() {
+  const [credentials, setCredentials] = useState(initialValue)
+  const history = useHistory()
+
+  const onChange = e => {
+    setCredentials({
+      ...credentials,
+      [e.target.name]: e.target.value
     })
-
-    const onChange = e => {
-        e.persist()
-        let value = e.target.type === e.target.value
-        setInitialValue({
-            ...initialValue, 
-            [e.target.name] : value
-        })
-    }
+  }
 
 
-    const onSubmit = e => {
-        e.preventDefault()
-        axios.post(`https://reqres.in/api/users`, initialValue)
-        .then(res => {
-            console.log(res.data)
-        })
-        .catch(error => console.log(error))
-    }
+  const onSubmit = e => {
+    e.preventDefault()
+    axios.post(`https://anywhere-fitness-wpt199-be.herokuapp.com/api/auth/login`, credentials)
+      .then(res => {
+        console.log(res)
+        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('role', res.data.role)
+        history.push('/classes')
+      })
+      .catch(error => console.log(error))
+  }
 
 
-    return(
+  return (
+    <div>
+      <form onSubmit={onSubmit}>
         <div>
-            <form onSubmit={onSubmit}>
-              <div>
-               <label for="user_name"> Enter Name </label>
-               <input 
-                 type="text"
-                 name="user_name"
-                 id="user_name"
-                 placeholder='enter your name'
-                 onChange={onChange}
-                 value={initialValue.user_name}
-               />
+          <label for="username"> Enter Name </label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder='enter your name'
+            onChange={onChange}
+            value={credentials.username}
+          />
 
-               
-    
-    
-               <label for="email_address"> Email Address </label>  
-               <input 
-                  type="text"
-                  name="email_address"
-                  id="email_address"
-                  placeholder='enter your email address'
-                  onChange={onChange}
-                  value={initialValue.email_address}
-                />
-    
-               <div>
-                  <label for="password"> Password </label>
-                    <input
-                     name="password" 
-                     id="password" 
-                     onChange={onChange} 
-                     value={initialValue.password}
-                    />
-                      
-                    
-                  
-                </div>
-    
-            <div>
-                <button> Submit </button>
-            </div>
-            
-             
-              </div>
-            
-          </form>
+          <div>
+            <label for="password"> Password </label>
+            <input
+              name="password"
+              id="password"
+              onChange={onChange}
+              value={credentials.password}
+            />
+
+          </div>
+
+          <div>
+            <button> Submit </button>
+          </div>
+
+
         </div>
-    )
+
+      </form>
+    </div>
+  )
 }
