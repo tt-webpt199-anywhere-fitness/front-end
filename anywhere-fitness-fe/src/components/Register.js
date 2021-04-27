@@ -66,10 +66,10 @@ export default function Register() {
           </div>
 
           <div>
-            <label for="interests"> Instructor </label>
+            <label for="role"> Role </label>
             <input
               name="role_id"
-              id="instructor"
+              id="role_id"
               type='checkbox'
               onChange={onChange}
               value='1'
