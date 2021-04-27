@@ -1,42 +1,37 @@
 import React from "react";
 
-export default function CreateClass(props) {
+export default function CreateCourse(props) {
   return (
     <form className="classCreate">
       <label>
         Class Name:
-        <input type="text" name="class_name" />
+        <input type="text" name="course" />
       </label>
       <label>
         Class Type:
-        <input type="text" name="class_type" />
+        <input type="text" name="course_type" />
       </label>
       <label>
         Start Time:
-        <input input="time" name="class_startTime" />
+        <input input="time" name="course_start" />
       </label>
       <label>
         Duration:
-        <input type="text" name="class_duration" />
+        <input type="text" name="course_duration" />
       </label>
       <label>
         Intensity Level:
-        <select name="class_intensity">
-          <option value="">Select Intensity</option>
-          <option value="Beginner">Beginner</option>
-          <option value="Intermediate">Intermediate</option>
-          <option value="Advanced">Advanced</option>
-        </select>
+        <input type="number" name="course_intensity" min="1" max="5" />
       </label>
       <label>
         Location:
-        <input type="text" name="class_location" />
+        <input type="text" name="course_location" />
       </label>
       <label>
         Maximum Class Size:
-        <input type="text" name="class_maxSize" />
+        <input type="text" name="course_maxSize" />
       </label>
-      <button name="class_create">Edit</button>
+      <button name="course_create">Edit</button>
     </form>
   );
 }

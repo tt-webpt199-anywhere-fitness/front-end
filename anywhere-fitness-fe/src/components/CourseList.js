@@ -11,12 +11,12 @@ const CourseList = () => {
 
   const getCourses = () => {
     const axios = axiosWithAuth()
-    // axios.get('')
-    //   .then(res => {
-    //     console.log('getCourses results', res)
-    //     setCourses(res.data)
-    //   })
-    //   .catch(err => console.log(err))
+    axios.get(`https://anywhere-fitness-wpt199-be.herokuapp.com/api/courses`)
+      .then(res => {
+        console.log('getCourses results', res)
+        setCourses(res.data)
+      })
+      .catch(err => console.log(err))
   }
 
   return (
