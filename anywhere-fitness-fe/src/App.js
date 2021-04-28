@@ -37,11 +37,11 @@ function App() {
     <div>
       <header className="App-header">
         <nav>
-          <h1>Anywhere Fitness</h1>
+          <h1 className="h1">Anywhere Fitness</h1>
           <div>
           <Link to="/">Home</Link>
             {token ?
-            <div>
+            <div className="divChild1">
              <Link to='/profile' >Profile</Link>
              {
                userRole === 'Instructor' ? (
