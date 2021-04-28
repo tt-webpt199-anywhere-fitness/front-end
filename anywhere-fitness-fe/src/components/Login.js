@@ -41,7 +41,7 @@ export default function Login() {
       .catch((err) => {
         setFormErrors({
           ...formErrors,
-          [e.target.name]: err.formErrors[0],
+          [e.target.name]: err.errors[0],
         });
       });
   };
