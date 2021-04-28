@@ -95,7 +95,7 @@ export default function Register() {
             <label for="interests"> Instructor </label>
             <input
               name="role_id"
-              id="instructor"
+              id="role_id"
               type="checkbox"
               onChange={onChange}
               value="1"
