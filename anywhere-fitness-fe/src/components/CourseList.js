@@ -37,8 +37,10 @@ const CourseList = () => {
 
 const mapStateToProps = state => {
   return {
-    editing: state.title.editing,
-    title: state.title.title
+    courses: [],
+    isLoading: false,
+    addedCourse: false,
+    error: ''
   }
 }
 

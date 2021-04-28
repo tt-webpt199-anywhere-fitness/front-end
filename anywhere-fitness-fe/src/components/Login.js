@@ -27,6 +27,7 @@ export default function Login() {
         console.log(res)
         localStorage.setItem('token', res.data.token)
         localStorage.setItem('role', res.data.role)
+        localStorage.setItem('id', res.data.id)
         history.push('/classes')
       })
       .catch(error => console.log(error))

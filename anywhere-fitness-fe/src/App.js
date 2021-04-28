@@ -64,18 +64,6 @@ function App() {
              : loginPage ? <Link to='/register'><button>Register</button></Link>
              : <Link to='/login'><button>login</button></Link>
             }
-            {
-              isSignedIn && (
-                <div>
-                  <Link to='/profile' >Profile</Link>
-              {
-                userRole === 'Instructor' ? (
-                <Link to="/create" >Create Class</Link> ) : 
-                <Link to="/classes" >Class List</Link>
-              }
-              </div>
-              )
-            }
           </div>
         </nav>
       </header>
