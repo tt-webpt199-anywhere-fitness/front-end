@@ -31,7 +31,7 @@ function App() {
     <div>
       <header className="App-header">
         <nav>
-          <h1>Anywhere Fitness</h1>
+          <h1 classname="h1">Anywhere Fitness</h1>
           <div>
             <Link to="/">Home</Link>
             {
