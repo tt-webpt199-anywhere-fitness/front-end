@@ -30,13 +30,14 @@ function App() {
   return (
     <div>
       <header className="App-header">
+      <h1 classname="h1">Anywhere Fitness</h1>
         <nav>
-          <h1 classname="h1">Anywhere Fitness</h1>
-          <div>
+          
+          <div classname="divParent">
             <Link to="/">Home</Link>
             {
               isSignedIn && (
-                <div>
+                <div classname="divChild1">
               {
                 userRole === 'Instructor' ? (
                 <Link to="/create" >Create Class</Link> ) : 
@@ -46,9 +47,9 @@ function App() {
               )
             }
             <Link to="/profile">Profile</Link>
-            <div>
+            <div classname="divChild2">
               {
-                loginPage ? <Link to= "/register"><button> Register </button></Link> : <></>
+                loginPage ? <Link to= "/register"><button classname="button"> Register </button></Link> : <></>
               }
               {
                 isSignedIn ? (
