@@ -22,10 +22,16 @@ function App() {
 		localStorage.getItem('id') ? true : false
 	);
 
-  const userRole = localStorage.getItem('role')
-  console.log(userRole)
-
   const loginPage = useRouteMatch("/login")
+  const homePage = useRouteMatch({
+    path: '/',
+    exact:true
+  });
+
+  const token = localStorage.getItem('token')
+  const userRole = localStorage.getItem('role')
+  console.log(localStorage)
+  const history = useHistory();
 
   return (
     <div>
@@ -33,10 +39,35 @@ function App() {
         <nav>
           <h1>Anywhere Fitness</h1>
           <div>
-            <Link to="/">Home</Link>
+          <Link to="/">Home</Link>
+            {token ?
+            <div>
+             <Link to='/profile' >Profile</Link>
+             {
+               userRole === 'Instructor' ? (
+                 <>
+                  <Link to="/create" >Create Class</Link>
+                  <Link to="/classes" >Class List</Link> 
+                </>
+                ) : 
+                <Link to="/classes" >Class List</Link>
+             }
+             <button onClick={()=> {
+              logout()
+              history.push('/')
+             }} >Logout</button>
+             </div>
+             : homePage ?<div>
+             <Link to='/login'><button>Login</button></Link>
+             <Link to='/register'><button>Register</button></Link>
+             </div>
+             : loginPage ? <Link to='/register'><button>Register</button></Link>
+             : <Link to='/login'><button>login</button></Link>
+            }
             {
               isSignedIn && (
                 <div>
+                  <Link to='/profile' >Profile</Link>
               {
                 userRole === 'Instructor' ? (
                 <Link to="/create" >Create Class</Link> ) : 
@@ -45,17 +76,6 @@ function App() {
               </div>
               )
             }
-            <Link to="/profile">Profile</Link>
-            <div>
-              {
-                loginPage ? <Link to= "/register"><button> Register </button></Link> : <></>
-              }
-              {
-                isSignedIn ? (
-                <Link to='/' onClick={logout} to='/'><button>Sign Out</button></Link> ) :
-                <Link to='/login' ><button>Log In</button></Link>
-              }
-            </div>
           </div>
         </nav>
       </header>
@@ -70,4 +90,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

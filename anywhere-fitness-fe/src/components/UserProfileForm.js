@@ -2,17 +2,20 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import Course from "./Course";
-import { toggleEditing, updateProfile } from '../actions/index'
+import { toggleEditing, updateProfile } from '../actions'
+import { getProfile } from '../actions'
+import axios from "axios";
 
-const initialValues = {
-  first_name: '',
-  last_name: '',
-  birthday: ''
+const initialFormValues = {
+  username: '',
+  password: ''
 }
 
-const UserProfile = (props) => {
-  const { user, userCourses, change, submit } = props;
-  const [userData, setUserData] = useState(initialValues)
+const UserProfile = props => {
+  const userId = localStorage.getItem('id')
+
+  const { user, userCourses, change } = props;
+  const [userData, setUserData] = useState(initialFormValues)
   const [updatedData, setUpdatedData] = useState({})
   console.log(userData)
   console.log(props)
@@ -22,45 +25,59 @@ const UserProfile = (props) => {
     getProfile()
   }, [])
 
-  const getProfile = () => {
-    const id = localStorage.getItem('id')
+  const update = (name, value) => {
+    setUpdatedData({...userData, [name]: value})
+  }
+
+  useEffect (() => {
     const axios = axiosWithAuth()
     axios.get(`https://anywhere-fitness-wpt199-be.herokuapp.com/api/user`)
     .then((res) => {
+      console.log(res)
       const currentUser = res.data.filter(
-        (user) => user.id === Number(id)
+        (user) => user.id === Number(userId)
       );
-      console.log('currentUser =====> ', currentUser[0]);
+      console.log(currentUser[0]);
       setUpdatedData({
-        // ...form,
-        first_name: currentUser[0].first_name,
-        last_name: currentUser[0].last_name,
-        birthday: currentUser[0].birthday,
+        ...userData,
+        username: currentUser[0].username
       });
     })
     .catch((err) =>
       console.error(`unable to get user data`, err.message)
     )
-  }
+  }, [userId])
+
+  
+  console.log(updatedData)
 
   const onChange = (evt) => {
     const { name, value } = evt.target;
-    setUpdatedData(name, value);
+    update(name, value);
   };
 
   const onSubmit = (evt) => {
     evt.preventDefault();
-    props.updateProfile(updatedData);
+    submit();
   };
+
+  const submit = () => {
+    axiosWithAuth()
+      .put(`https://anywhere-fitness-wpt199-be.herokuapp.com/api/user${userId}`, updatedData)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch(err => console.log(err))
+  }
 
   return (
     <div>
       {!props.editing ? (
         <div>
           <h2>
-            {props.user.first_name} {props.user.last_name}
+            {props.user} 
           </h2>
-          <p>{props.user.birthday}</p>
+          <button onClick={updateProfile}>Edit Profile</button>
         </div>
       ) : (
     <div className="userProfilePage">
@@ -116,11 +133,10 @@ const UserProfile = (props) => {
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    user: state.user,
-    editing: state.editing
+    username: state.user
   }
 }
 
-export default connect(mapStateToProps, { toggleEditing, updateProfile })(UserProfile)
+export default connect(mapStateToProps, { updateProfile}) (UserProfile);
