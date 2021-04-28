@@ -20,7 +20,6 @@ export default function Login() {
   const [formErrors, setFormErrors] = useState(initialFormErrors);
 
   const onChange = (e) => {
-    //console.log(e.target.name, e.target.value);
     inputValidation(e);
     setCredentials({
       ...credentials,
