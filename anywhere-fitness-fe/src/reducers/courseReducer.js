@@ -10,7 +10,7 @@ export const initialState = {
 	courses: [],
 	isLoading: false,
 	addedCourse: false,
-	error: '',
+	error: ''
 };
 
 export const courseReducer = (state = initialState, action) => {
