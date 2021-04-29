@@ -28,10 +28,16 @@ function App() {
 		localStorage.getItem('id') ? true : false
 	);
 
-	const userRole = localStorage.getItem('role');
-	console.log(userRole);
-
 	const loginPage = useRouteMatch('/login');
+	const homePage = useRouteMatch({
+		path: '/',
+		exact: true,
+	});
+
+	const token = localStorage.getItem('token');
+	const userRole = localStorage.getItem('role');
+	console.log(localStorage);
+	const history = useHistory();
 
 	return (
 		<div>
@@ -41,106 +47,97 @@ function App() {
 						Anywhere Fitness
 					</h1>
 					<div className="links">
-						<Link to="/create">
-							Create
-							Class
-						</Link>
 						<Link to="/">
 							Home
 						</Link>
-						{isSignedIn && (
+						{token ? (
 							<div className="hidden-div">
+								<Link to="/profile">
+									Profile
+								</Link>
 								{userRole ===
 								'Instructor' ? (
-									<Link to="/create">
-										Create
-										Class
-									</Link>
+									<>
+										<Link to="/create">
+											Create
+											Class
+										</Link>
+										<Link to="/classes">
+											Class
+											List
+										</Link>
+									</>
 								) : (
 									<Link to="/classes">
 										Class
 										List
 									</Link>
 								)}
-							</div>
-						)}
-						<Link to="/profile">
-							Profile
-						</Link>
-						<div className="button-container">
-							{loginPage ? (
-								<Link to="/register">
-									<button className="register-button">
-										{' '}
-										Register{' '}
-									</button>
-								</Link>
-							) : (
-								<>
-
-								</>
-							)}
-							{isSignedIn ? (
-								<Link
-									to="/"
-									onClick={
-										logout
-									}
+								<button
+									className="log-in-out"
+									onClick={() => {
+										logout();
+										history.push(
+											'/'
+										);
+									}}
 								>
-									<button className="log-in-out">
-										Sign
-										Out
-									</button>
-								</Link>
-							) : (
+									Logout
+								</button>
+							</div>
+						) : homePage ? (
+							<div>
 								<Link to="/login">
 									<button className="log-in-out">
-										Log
-										In
+										Login
 									</button>
 								</Link>
-							)}
-						</div>
+								<Link to="/register">
+									<button className="register-button">
+										Register
+									</button>
+								</Link>
+							</div>
+						) : loginPage ? (
+							<Link to="/register">
+								<button className="register-button">
+									Register
+								</button>
+							</Link>
+						) : (
+							<Link to="/login">
+								<button className="log-in-out">
+									login
+								</button>
+							</Link>
+						)}
 					</div>
 				</nav>
 			</header>
-			<div className="app-body">
-				<Switch>
-					<ProtectedRoute
-						exact
-						path="/classes"
-						component={
-							CourseList
-						}
-					/>
-					<ProtectedRoute
-						exact
-						path="/create"
-						component={
-							CreateCourse
-						}
-					/>
-					<ProtectedRoute
-						path="/profile"
-						component={
-							UserProfile
-						}
-					/>
-					<Route
-						path="/login"
-						component={Login}
-					/>
-					<Route
-						path="/register"
-						component={Register}
-					/>
-					<Route
-						exact
-						path="/"
-						component={Home}
-					/>
-				</Switch>
-			</div>
+			<Switch>
+				<ProtectedRoute
+					exact
+					path="/classes"
+					component={CourseList}
+				/>
+				<ProtectedRoute
+					exact
+					path="/create"
+					component={CreateCourse}
+				/>
+				<ProtectedRoute
+					path="/profile"
+					component={UserProfile}
+				/>
+				<Route
+					path="/login"
+					component={Login}
+				/>
+				<Route
+					path="/register"
+					component={Register}
+				/>
+			</Switch>
 			<Footer />
 		</div>
 	);

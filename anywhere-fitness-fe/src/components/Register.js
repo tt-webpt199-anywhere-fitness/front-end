@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
+import schema from '../validation/registrationFormSchema';
+import * as yup from 'yup';
 
 const initialValue = {
 	username: '',
@@ -9,9 +11,15 @@ const initialValue = {
 	role_id: 2,
 };
 
+const initialFormErrors = {
+	username: '',
+	password: '',
+};
+
 export default function Register() {
 	const [newUser, setNewUser] = useState(initialValue);
 	const history = useHistory();
+	const [formErrors, setFormErrors] = useState(initialFormErrors);
 
 	const onChange = (e) => {
 		if (e.target.type === 'checkbox') {
@@ -24,6 +32,24 @@ export default function Register() {
 			...newUser,
 			[e.target.name]: e.target.value,
 		});
+	};
+
+	const inputValidation = (e) => {
+		yup.reach(schema, e.target.name)
+			.validate(e.target.value)
+			.then(() => {
+				setFormErrors({
+					...formErrors,
+					[e.target.name]: '',
+				});
+			})
+			.catch((err) => {
+				setFormErrors({
+					...formErrors,
+					[e.target.name]:
+						err.errors[0],
+				});
+			});
 	};
 
 	const onSubmit = (e) => {
@@ -83,13 +109,25 @@ export default function Register() {
 					</label>
 					<input
 						name="role_id"
-						id="instructor"
+						id="role_id"
 						type="checkbox"
 						onChange={onChange}
 						value="1"
 					></input>
 				</div>
 
+				<div className="errors">
+					<div>
+						{
+							formErrors.username
+						}
+					</div>
+					<div>
+						{
+							formErrors.password
+						}
+					</div>
+				</div>
 				<div>
 					<button className="submit-button">
 						{' '}

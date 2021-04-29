@@ -2,8 +2,15 @@ import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
+import schema from '../validation/loginFormSchema';
+import * as yup from 'yup';
 
 const initialValue = {
+	username: '',
+	password: '',
+};
+
+const initialFormErrors = {
 	username: '',
 	password: '',
 };
@@ -11,12 +18,32 @@ const initialValue = {
 export default function Login() {
 	const [credentials, setCredentials] = useState(initialValue);
 	const history = useHistory();
+	const [formErrors, setFormErrors] = useState(initialFormErrors);
 
 	const onChange = (e) => {
+		inputValidation(e);
 		setCredentials({
 			...credentials,
 			[e.target.name]: e.target.value,
 		});
+	};
+
+	const inputValidation = (e) => {
+		yup.reach(schema, e.target.name)
+			.validate(e.target.value)
+			.then(() => {
+				setFormErrors({
+					...formErrors,
+					[e.target.name]: '',
+				});
+			})
+			.catch((err) => {
+				setFormErrors({
+					...formErrors,
+					[e.target.name]:
+						err.errors[0],
+				});
+			});
 	};
 
 	const onSubmit = (e) => {
