@@ -1,13 +1,16 @@
 import {
   TOGGLE_EDITING,
-  UPDATE_PROFILE
+  UPDATE_PROFILE,
+  FETCH_PROFILE,
+	START_FETCHING,
+	ERROR,
+	SUCCESS,
 } from '../actions/index'
 
 export const initialState = {
   user: {
-    first_name: '',
-    last_name: '',
-    birthday: ''
+    username: '',
+    courses: []
   },
   editing: false
 }

@@ -2,125 +2,59 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import Course from "./Course";
-import { toggleEditing, updateProfile } from '../actions/index'
+import { toggleEditing, updateProfile } from '../actions'
+import { getProfile } from '../actions'
+import axios from "axios";
 
-const initialValues = {
-  first_name: '',
-  last_name: '',
-  birthday: ''
+const initialFormValues = {
+  username: '',
+  password: ''
 }
 
-const UserProfile = (props) => {
-  const { user, userCourses, change, submit } = props;
-  const [userData, setUserData] = useState(initialValues)
-  const [updatedData, setUpdatedData] = useState({})
-  console.log(userData)
-  console.log(props)
-  console.log(updatedData)
+const UserProfile = props => {
+  const userId = localStorage.getItem('id')
+  console.log(userId)
+
+  const [courses, setCourses] = useState([])
 
   useEffect(() => {
-    getProfile()
+    getUserCourses()
   }, [])
-
-  const getProfile = () => {
-    const id = localStorage.getItem('id')
+  
+  const getUserCourses = () => {
     const axios = axiosWithAuth()
-    axios.get(`https://anywhere-fitness-wpt199-be.herokuapp.com/api/user`)
-    .then((res) => {
-      const currentUser = res.data.filter(
-        (user) => user.id === Number(id)
-      );
-      console.log('currentUser =====> ', currentUser[0]);
-      setUpdatedData({
-        // ...form,
-        first_name: currentUser[0].first_name,
-        last_name: currentUser[0].last_name,
-        birthday: currentUser[0].birthday,
-      });
-    })
-    .catch((err) =>
-      console.error(`unable to get user data`, err.message)
-    )
+    axios.get(`https://anywhere-fitness-wpt199-be.herokuapp.com/api/courses/${userId}`)
+      .then(res => {
+        console.log('getUserCourses results', res)
+        setCourses(res.data)
+      })
+      .catch(err => console.log(err))
   }
 
-  const onChange = (evt) => {
-    const { name, value } = evt.target;
-    setUpdatedData(name, value);
-  };
-
-  const onSubmit = (evt) => {
-    evt.preventDefault();
-    props.updateProfile(updatedData);
-  };
-
   return (
-    <div>
-      {!props.editing ? (
-        <div>
-          <h2>
-            {props.user.first_name} {props.user.last_name}
-          </h2>
-          <p>{props.user.birthday}</p>
-        </div>
-      ) : (
     <div className="userProfilePage">
-      <form className="userProfile" onSubmit={onSubmit}>
-        <label>
-          Name:
-          <label>
-            First:
-            <input
-              type="text"
-              name="first_name"
-              value={userData.first_name}
-              onChange={onChange}
-            />
-          </label>
-          <label>
-            Last:
-            <input
-              type="text"
-              name="last_name"
-              value={userData.last_name}
-              onChange={onChange}
-            />
-          </label>
-          <label>
-            Birthday:
-            <input
-              type="date"
-              name="user_birthday"
-              value={userData.birthday}
-              onChange={onChange}
-            />
-          </label>
-          <button name="user_edit">Edit</button>
-          {/* edit button should allow user to edit information */}
-          <button name="user_submit" disabled>
-            Submit
-          </button>
-          {/* submit button should be disabled unless the user clicks edit*/}
-        </label>
-      </form>
+      <div className="userProfile">
+        {/* <h2>{props.user.username}</h2> */}
+      </div>
       <div className="userCourses">
         <h2>Registered Classes</h2>
-        {/* {userCourses.map((course) => {
-          return <Course course={course} />;
-        })} */}
+         {
+          courses &&
+          courses.map((course, index) => {
+            return <Course course={course} key={index} />
+          })
+        }
 
         {/* Should display course that the user in registered for */}
       </div>
     </div>
-    )}
-    </div>
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    user: state.user,
-    editing: state.editing
+    username: state.user
   }
 }
 
-export default connect(mapStateToProps, { toggleEditing, updateProfile })(UserProfile)
+export default connect(mapStateToProps, { updateProfile}) (UserProfile);

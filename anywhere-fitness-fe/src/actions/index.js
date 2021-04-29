@@ -23,7 +23,7 @@ export const getCourses = () => {
 	return (dispatch) => {
 		dispatch({ type: START_FETCHING });
 		axiosWithAuth()
-			.get('/courses')
+			.get(`https://anywhere-fitness-wpt199-be.herokuapp.com/api/courses`)
 			.then((res) => {
 				console.log('Course data pulled from API =====> ', res);
 				dispatch({ type: FETCH_COURSES, payload: res.data });
@@ -34,6 +34,30 @@ export const getCourses = () => {
 			});
 	};
 };
+
+export const getProfile = () => {
+	const id = localStorage.getItem('id')
+	return (dispatch) => {
+		dispatch({ type: START_FETCHING });
+		axiosWithAuth()
+			.get(`https://anywhere-fitness-wpt199-be.herokuapp.com/api/user`)
+			.then((res) => {
+				const currentUser = res.data.filter(
+					(user) => user.id === Number(id)
+				);
+				console.log('currentUser =====> ', currentUser[0]);
+				dispatch({
+					type: SUCCESS,
+					payload: {
+						username: currentUser[0].username
+					}
+				});
+			})
+			.catch((err) =>
+				console.error(`unable to get user data`, err.message)
+			)
+	}
+}
 
 export const addNewCourse = (course) => {
 	return (dispatch) => {

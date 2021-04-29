@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Course from './Course'
 import axiosWithAuth from '../utils/axiosWithAuth'
+import { connect } from 'react-redux';
+import { toggleEditing, updateProfile } from '../actions'
 
 const CourseList = () => {
   const [courses, setCourses] = useState([])
@@ -33,4 +35,13 @@ const CourseList = () => {
   )
 }
 
-export default CourseList
+const mapStateToProps = state => {
+  return {
+    courses: [],
+    isLoading: false,
+    addedCourse: false,
+    error: ''
+  }
+}
+
+export default connect(mapStateToProps, { toggleEditing, updateProfile })(CourseList);
