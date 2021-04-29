@@ -91,6 +91,14 @@ const CourseList = () => {
       </div>
     </div>
   );
+
+  const mapStateToProps = state => {
+  return {
+    courses: [],
+    isLoading: false,
+    addedCourse: false,
+    error: ''
+  }
 };
 
 export default CourseList;
