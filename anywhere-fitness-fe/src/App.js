@@ -41,6 +41,10 @@ function App() {
 						Anywhere Fitness
 					</h1>
 					<div className="links">
+						<Link to="/create">
+							Create
+							Class
+						</Link>
 						<Link to="/">
 							Home
 						</Link>
