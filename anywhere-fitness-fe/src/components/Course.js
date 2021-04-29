@@ -11,7 +11,7 @@ const Course = (props) => {
       <p>Duration: {course.duration}</p>
       <p>Intensity Level: {course.intensity}</p>
       <p>Location: {course.location}</p>
-      <p>Current Registered Attendees: {course.attendees}</p>
+      <p>Current Registered Attendees: {course.enrolled}</p>
       <p>Max Class Size: {course.course_max}</p>
       <hr />
     </div>
