@@ -31,10 +31,14 @@ const CourseList = () => {
     axios
       .get(`https://anywhere-fitness-wpt199-be.herokuapp.com/api/courses`)
       .then((res) => {
-        const searchTerm = search.searchTerm.toLowerCase();
-        const filterType = search.filterType;
+        const lowerSearchTerm = search.searchTerm.toLowerCase();
+        console.log(search.searchTerm.toLowerCase());
+
         const arrayFilter = res.data.filter((course) => {
-          return course[`${filterType}`].includes(searchTerm);
+          console.log(course[search.filterType]);
+          return course[search.filterType]
+            .toLowerCase()
+            .includes(lowerSearchTerm);
         });
         setCourses(arrayFilter);
       })
@@ -42,7 +46,11 @@ const CourseList = () => {
   }, [search]);
 
   const searchChange = (e) => {
-    setSearch(e.target.value);
+    setSearch({
+      ...search,
+      [e.target.name]: e.target.value,
+    });
+    console.log(search);
   };
 
   return (
@@ -52,7 +60,7 @@ const CourseList = () => {
           Search: &nbsp;
           <input
             type="text"
-            name="searchbar"
+            name="searchTerm"
             onChange={searchChange}
             value={search.searchTerm}
           />
@@ -60,7 +68,7 @@ const CourseList = () => {
         <label>
           &nbsp; Search By:
           <select
-            name="searchFilter"
+            name="filterType"
             onChange={searchChange}
             value={search.filterType}
           >
