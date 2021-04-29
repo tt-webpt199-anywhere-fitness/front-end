@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Course from "./Course";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import { connect } from "react-redux";
+import { toggleEditing, updateProfile } from "../actions";
 
 const initialSearchTerms = {
   searchTerm: "",
