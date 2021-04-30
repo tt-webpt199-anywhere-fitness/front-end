@@ -61,47 +61,47 @@ export default function CreateCourse(props) {
   }
 
   return (
-    <div className="addCourse">
+    <div className="form-container">
       <h3>Add a class</h3>
-      <form className="classCreate" onSubmit={addCourse}>
-        <label>
-          Class Name:
+			<form className="classCreate" onSubmit={addCourse}>
+				<div className="inputs">
+        <label>Class Name:</label>
           <input 
             type="text" 
             name="class_name" 
             value={course.class_name}
             onChange={handleChange}
             />
-        </label>
-        <label>
-          Class Type:
+        </div>
+        <div className="inputs">
+        <label>Class Type:</label>
           <input 
             type="text" 
             name="class_type" 
             value={course.class_type}
             onChange={handleChange}
             />
-        </label>
-        <label>
-          Start Time:
+        </div>
+        <div className="inputs">
+        <label>Start Time:</label>
           <input 
             type="datetime-local" 
             name="class_start" 
             value={course.class_start}
             onChange={handleChange}
             />
-        </label>
-        <label>
-          Duration:
+        </div>
+        <div className="inputs">
+        <label>Duration:</label>
           <input 
             type="text" 
             name="class_duration" 
             value={course.class_duration}
             onChange={handleChange}
             />
-        </label>
-        <label>
-          Intensity Level:
+        </div>
+        <div className="inputs">
+        <label>Intensity Level:</label>
           <input 
             type="number" 
             name="class_intensity" 
@@ -110,18 +110,18 @@ export default function CreateCourse(props) {
             value={course.class_intensity}
             onChange={handleChange}
             />
-        </label>
-        <label>
-          Location:
+        </div>
+        <div className="inputs">
+        <label>Location:</label>
           <input 
             type="text" 
             name="location_id" 
             value={course.location_id}
             onChange={handleChange}
             />
-        </label>
-        <label>
-          Maximum Class Size:
+        </div>
+        <div className="inputs">
+        <label>Maximum Class Size:</label>
           <input 
             type="number" 
             min='1' 
@@ -129,8 +129,13 @@ export default function CreateCourse(props) {
             value={course.class_max}
             onChange={handleChange}
             />
-        </label>
-        <button name="class_create">Submit</button>
+        </div>
+        <button 
+          name="class_create"
+					className="edit-button"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );

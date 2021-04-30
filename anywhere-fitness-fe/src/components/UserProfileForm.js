@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import axiosWithAuth from "../utils/axiosWithAuth";
-import Course from "./Course";
-import { toggleEditing, updateProfile } from '../actions'
-import { getProfile } from '../actions'
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import axiosWithAuth from '../utils/axiosWithAuth';
+import Course from './Course';
+import { toggleEditing, updateProfile } from '../actions/index';
+import { getProfile } from '../actions';
+import axios from 'axios';
 
 const initialFormValues = {
   username: '',
   password: ''
 }
 
-const UserProfile = props => {
+const UserProfile = (props) => {
   const userId = Number(localStorage.getItem('id'))
   console.log(userId)
 
@@ -39,12 +39,21 @@ const UserProfile = props => {
       </div>
       <div className="userCourses">
         <h2>Registered Classes</h2>
-         {
-          courses &&
-          courses.map((course, index) => {
-            return <Course course={course} key={index} />
-          })
-        }
+				{courses &&
+					courses.map(
+						(course, index) => {
+							return (
+								<Course
+									course={
+										course
+									}
+									key={
+										index
+									}
+								/>
+							);
+						}
+					)}
 
         {/* Should display course that the user in registered for */}
       </div>
@@ -53,9 +62,9 @@ const UserProfile = props => {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    username: state.user
-  }
-}
+	return {
+		username: state.user,
+	};
+};
 
-export default connect(mapStateToProps, { updateProfile}) (UserProfile);
+export default connect(mapStateToProps, { updateProfile })(UserProfile);

@@ -28,6 +28,10 @@ const Course = (props) => {
 			console.log(err)
 			)
   }
+
+  const ColoredLine = ({ color }) => {
+    return <hr style={{ borderColor: color }} />;
+  };
   
   const getCourseToEdit = (e) => {
     const course_id = e.target.value
@@ -57,7 +61,7 @@ const Course = (props) => {
   return (
     <div>
       {!editing ? ( 
-        <div>
+        <div className="course-container">
         <h3>{course.course}</h3>
         <h4>Instructor: {course.instructor}</h4>
         <p>Type: {course.course_type}</p>
@@ -75,6 +79,7 @@ const Course = (props) => {
             </div>
             ) : <> </>
           }
+        <ColoredLine color="orangered" />
         </div> ) : ( 
         <div className="addCourse">
         <h3>Add a class</h3>
@@ -154,8 +159,7 @@ const Course = (props) => {
       )}
       <hr />
     </div>
-  )
-}
+  );
+};
 
-export default Course
-
+export default Course;
