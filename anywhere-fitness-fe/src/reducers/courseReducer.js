@@ -4,12 +4,16 @@ import {
 	SUCCESS,
 	FETCH_COURSES,
 	ADD_COURSES,
+	DELETE_COURSE,
+	UPDATE_COURSE
 } from '../actions';
 
 export const initialState = {
 	courses: [],
+	single_course: {},
 	isLoading: false,
 	addedCourse: false,
+	editing: false,
 	error: ''
 };
 
@@ -31,6 +35,13 @@ export const courseReducer = (state = initialState, action) => {
 			};
 		}
 
+		case UPDATE_COURSE:
+			return {
+				...state,
+				single_course: action.payload,
+				editing: false
+			}
+
 		case ERROR: {
 			return {
 				...state,
@@ -43,8 +54,15 @@ export const courseReducer = (state = initialState, action) => {
 			return {
 				...state,
 				addedCourse: true,
-				courses: [...state.courses, action.payload],
+				courses: [...state.courses, action.payload]
 			};
+		}
+
+		case DELETE_COURSE: {
+			return {
+				...state,
+				courses: [...state.courses, action.payload]
+			}
 		}
 
 		case SUCCESS: {

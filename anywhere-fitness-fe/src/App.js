@@ -16,6 +16,8 @@ import Home from './components/Home';
 import CreateCourse from './components/CreateClass';
 import UserProfile from './components/UserProfileForm';
 import Footer from './components/Footer';
+import InstructorProfile from './components/InstructorProfileForm'
+
 import { useState } from 'react';
 
 function App() {
@@ -33,6 +35,14 @@ function App() {
 		path: '/',
 		exact: true,
 	});
+
+	const setRoleComponent = (userType) => {
+    if (userRole === 'Instructor' ) {
+      return InstructorProfile
+    } else if (userRole === 'User') {
+      return UserProfile
+    }
+  }
 
 	const token = localStorage.getItem('token');
 	const userRole = localStorage.getItem('role');
@@ -127,7 +137,7 @@ function App() {
 				/>
 				<ProtectedRoute
 					path="/profile"
-					component={UserProfile}
+					component={setRoleComponent(userRole)}
 				/>
 				<Route
 					path="/login"

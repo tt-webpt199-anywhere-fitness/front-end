@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Course from "./Course";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { connect } from "react-redux";
-import { toggleEditing, updateProfile } from "../actions";
+import { updateCourse } from "../actions";
 
 const initialSearchTerms = {
   searchTerm: "",
@@ -92,8 +92,11 @@ const CourseList = () => {
     </div>
   );
 };
+
 const mapStateToProps = (state) => {
   return {
+    editing: state.course.editing,
+    course: state.course.course,
     courses: [],
     isLoading: false,
     addedCourse: false,

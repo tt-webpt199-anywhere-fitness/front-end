@@ -5,18 +5,15 @@ export const ERROR = 'ERROR';
 export const SUCCESS = 'SUCCESS';
 export const FETCH_COURSES = 'FETCH_COURSES';
 export const ADD_COURSES = 'ADD_COURSES';
-export const TOGGLE_EDITING = 'TOGGLE_EDITING';
 export const UPDATE_PROFILE = 'UPDATE_PROFILE';
+export const UPDATE_COURSE = 'UPDATE_COURSE';
+export const DELETE_COURSE = 'DELETE_COURSE';
 
 export const updateProfile = (user) => {
 	return {
 		type: UPDATE_PROFILE,
 		payload: user
 	}
-}
-
-export const toggleEditing = () => {
-	return { type: TOGGLE_EDITING }
 }
 
 export const getCourses = () => {
@@ -75,3 +72,35 @@ export const addNewCourse = (course) => {
 			});
 	};
 };
+
+export const updateCourse = (course_id) => {
+	return (dispatch) => {
+		const id = Number(course_id)
+		dispatch({ type: UPDATE_COURSE});
+		axiosWithAuth()
+			.post(`/courses/${id}`)
+			.then((res) => {
+				console.log(res)
+				return res.data
+			})
+			.catch((err) => {
+				console.log(err)
+			})
+	}
+}
+
+export const deleteCourse = (course_id) => {
+	return (dispatch) => {
+		const id = Number(course_id)
+		dispatch({ type: DELETE_COURSE});
+		axiosWithAuth()
+			.delete(`/courses/${id}`)
+			.then((res) => {
+				console.log(res)
+				return res.message
+			})
+			.catch((err) => 
+			console.log(err)
+			)
+	}
+}

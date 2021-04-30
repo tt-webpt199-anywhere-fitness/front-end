@@ -46,27 +46,22 @@ export default function Login() {
 			});
 	};
 
-	const onSubmit = (e) => {
-		e.preventDefault();
-		axios.post(
+const onSubmit = (e) => {
+	e.preventDefault();
+	axios
+		.post(
 			`https://anywhere-fitness-wpt199-be.herokuapp.com/api/auth/login`,
 			credentials
 		)
-			.then((res) => {
-				console.log(res);
-				localStorage.setItem(
-					'token',
-					res.data.token
-				);
-				localStorage.setItem(
-					'role',
-					res.data.role
-				);
-				history.push('/classes');
-			})
-			.catch((error) => console.log(error));
-	};
-
+		.then((res) => {
+			console.log('login res', res);
+			localStorage.setItem("token", res.data.token);
+			localStorage.setItem("role", res.data.role);
+			localStorage.setItem("id", res.data.id);
+			history.push("/classes");
+		})
+		.catch((error) => console.log(error));
+	}
 	return (
 		<div className="form-container">
 			<form onSubmit={onSubmit}>
