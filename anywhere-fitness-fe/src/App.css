@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap");
 
 .App {
-	text-align: center;
-	background-color: #282c34;
-	width: 100vw;
+  text-align: center;
+  background-color: #282c34;
+  width: 100vw;
 }
 
 h1,
@@ -12,229 +12,229 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: 'Zen Dots', cursive;
+  font-family: "Zen Dots", cursive;
 }
 
 .App-logo {
-	height: 40vmin;
-	pointer-events: none;
+  height: 40vmin;
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-	.App-logo {
-		animation: App-logo-spin infinite 20s linear;
-	}
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
 .App-header {
-	background-color: #282c34;
-	width: 100vw;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	font-size: calc(10px + 2vmin);
-	color: white;
-	height: 7vh;
-	border-bottom: 3px solid orangered;
-	/* border: 1px solid green; */
+  background-color: #282c34;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  height: 7vh;
+  border-bottom: 3px solid orangered;
+  /* border: 1px solid green; */
 }
 
 .App-link {
-	color: #61dafb;
+  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .logo {
-	color: orangered;
-	font-size: 2rem;
-	/* border: 1px solid white; */
-	width: 30%;
-	margin-bottom: 0;
-	padding-left: 0.5%;
+  color: orangered;
+  font-size: 2rem;
+  /* border: 1px solid white; */
+  width: 30%;
+  margin-bottom: 0;
+  padding-left: 0.5%;
 }
 
 a {
-	text-decoration: none;
-	color: orangered;
-	margin: 0 2%;
-	font-size: 1.25rem;
-	/* border: 1px dotted green; */
-	/* width: 25%; */
-	height: 30%;
+  text-decoration: none;
+  color: orangered;
+  margin: 0 2%;
+  font-size: 1.25rem;
+  /* border: 1px dotted green; */
+  /* width: 25%; */
+  height: 30%;
 }
 
 nav {
-	width: 100%;
-	display: flex;
-	/* border: 1px solid red; */
-	justify-content: space-between;
-	align-items: flex-end;
+  width: 100%;
+  display: flex;
+  /* border: 1px solid red; */
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .links {
-	display: flex;
-	justify-content: flex-end;
-	align-items: flex-end;
-	/* border: 1px solid yellow; */
-	width: 65%;
-	padding-right: 1.5%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  /* border: 1px solid yellow; */
+  width: 65%;
+  padding-right: 1.5%;
 }
 
 button {
-	background-color: orangered;
-	border-radius: 0.25rem;
-	border: 2px solid black;
-	padding: 3% 5%;
-	width: 7rem;
-	margin: 0 1%;
+  background-color: orangered;
+  border-radius: 0.25rem;
+  border: 2px solid black;
+  padding: 3% 5%;
+  width: 7rem;
+  margin: 0 1%;
 }
 
 .edit-button {
-	padding: 0.5% 5%;
+  padding: 0.5% 5%;
 }
 
 .log-out {
-	padding: 0.5%;
+  padding: 0.5%;
 }
 
 button:hover {
-	background-color: black;
-	color: orangered;
-	border: 2px solid orangered;
+  background-color: black;
+  color: orangered;
+  border: 2px solid orangered;
 }
 
 .button-container {
-	/* border: 1px solid purple; */
-	width: 16%;
-	display: flex;
-	justify-content: space-between;
+  /* border: 1px solid purple; */
+  width: 16%;
+  display: flex;
+  justify-content: space-between;
 }
 
 img {
-	border-top: 3px solid orangered;
-	border-bottom: 3px solid orangered;
-	width: 100vw;
+  border-top: 3px solid orangered;
+  border-bottom: 3px solid orangered;
+  width: 100vw;
 }
 
 .app-body {
-	height: 45vh;
-	background-color: #282c34;
+  height: 45vh;
+  background-color: #282c34;
 }
 
 .footer-img {
-	background-color: #282c34;
-	padding: 2% 0;
+  background-color: #282c34;
+  padding: 2% 0;
 }
 
 .home-container {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-	background-color: #282c34;
-	/* border: 1px solid yellow; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #282c34;
+  /* border: 1px solid yellow; */
 }
 .home-text {
-	/* border: 1px solid white; */
-	color: orangered;
-	width: 45%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	line-height: 1.25;
+  /* border: 1px solid white; */
+  color: orangered;
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.25;
 }
 
 .form-container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-	background-color: #282c34;
-	/* border: 1px dashed yellow; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #282c34;
+  /* border: 1px dashed yellow; */
 }
 
 form {
-	/* border: 1px solid white; */
-	color: orangered;
-	width: 30%;
-	height: 95%;
-	display: flex;
-	flex-flow: column;
-	align-items: center;
-	justify-content: center;
+  /* border: 1px solid white; */
+  color: orangered;
+  width: 30%;
+  height: 95%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .inputs {
-	/* border: 1px dotted blue; */
-	width: 40%;
-	margin: 3% 0;
-	height: 5%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  /* border: 1px dotted blue; */
+  width: 40%;
+  margin: 3% 0;
+  height: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 input {
-	width: 60%;
-	border: 2px solid orangered;
-	background-color: #282c34;
-	color: orangered;
-	border-radius: 0.25rem;
-	padding: 3%;
+  width: 60%;
+  border: 2px solid orangered;
+  background-color: #282c34;
+  color: orangered;
+  border-radius: 0.25rem;
+  padding: 3%;
 }
 
 .course-list {
-	background-color: #282c34;
+  background-color: #282c34;
 }
 
 .course-container {
-	color: orangered;
-	border-radius: 7%;
-	box-shadow: 1px 10px 20px 5px #ff4500;
-	background-color: #282c34;
-	border: 2px solid orangered;
-	width: 15%;
-	padding: 0 0.5%;
-	margin: 1.25%;
+  color: orangered;
+  border-radius: 7%;
+  box-shadow: 1px 10px 20px 5px #ff4500;
+  background-color: #282c34;
+  border: 2px solid orangered;
+  width: 75%;
+  padding: 0 0.5%;
+  margin: 1.25%;
 }
 
 .courses {
-	display: flex;
+  display: flex;
 }
 
 .classCreate .inputs {
-	width: 50%;
-	/* border: 1px dotted red; */
-	display: flex;
+  width: 50%;
+  /* border: 1px dotted red; */
+  display: flex;
 }
 
 .search-bar {
-	margin-top: 1%;
-	width: 90%;
-	display: flex;
-	/* border: 1px solid green; */
-	justify-content: space-between;
-	align-items: center;
+  margin-top: 1%;
+  width: 90%;
+  display: flex;
+  /* border: 1px solid green; */
+  justify-content: space-between;
+  align-items: center;
 }
 
 .search-bar input {
-	width: 40%;
-	padding: 1%;
+  width: 40%;
+  padding: 1%;
 }
 
 .userProfilePage {
-	background-color: #282c34;
-	height: 25vh;
-	color: orangered;
-	padding: 1%;
+  background-color: #282c34;
+  height: 25vh;
+  color: orangered;
+  padding: 1%;
 }
