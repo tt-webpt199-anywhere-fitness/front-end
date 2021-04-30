@@ -61,7 +61,7 @@ const onSubmit = (e) => {
 			history.push("/classes");
 		})
 		.catch((error) => console.log(error));
-
+	}
 	return (
 		<div className="form-container">
 			<form onSubmit={onSubmit}>
