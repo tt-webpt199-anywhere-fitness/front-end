@@ -3,13 +3,25 @@ import { useHistory, useRouteMatch } from 'react-router'
 import axiosWithAuth from '../utils/axiosWithAuth'
 import { updateCourse } from '../actions';
 
+const initialEditedCourse = {
+  class_name: "",
+  class_type: "",
+  class_start: "",
+  class_duration: "",
+  class_intensity: 1,
+  class_enrolled: 0,
+  class_max: 10,
+  location_id: 1,
+  user_id: ""
+
+}
+
 const Course = (props) => {
   const { course } = props
   const history = useHistory()
-  const [editedCourse, setEditedCourse] = useState({})
+  const [editedCourse, setEditedCourse] = useState(initialEditedCourse)
   const userId = localStorage.getItem('id')
   const [editing, setEditing] = useState()
-  console.log(props)
 
   const userRole = localStorage.getItem('role')
   const profilePage = useRouteMatch("/profile")
@@ -33,29 +45,75 @@ const Course = (props) => {
     return <hr style={{ borderColor: color }} />;
   };
   
-  const getCourseToEdit = (e) => {
-    const course_id = e.target.value
-    const axios = axiosWithAuth()
-    axios.get(`/courses/${course_id}`)
-      .then(res => {
-        console.log('getCourseToEdit results', res)
-        setEditedCourse(res.data)
-        toggleEditing()
-      })
-      .catch(err => console.log(err))
-  }
-  
-  const toggleEditing = () => {
-	  console.log('editing enabled?')
-    setEditing(true)
+  // const getCourseToEdit = (e) => {
+  //   const course_id = e.target.value
+  //   const axios = axiosWithAuth()
+  //   axios.get(`/courses/${course_id}`)
+  //     .then(res => {
+  //       console.log('getCourseToEdit results', res)
+  //       setEditedCourse(res.data)
+  //       toggleEditing()
+  //     })
+  //     .catch(err => console.log(err))
+  // }
+  const editedCourseId = props.course.id
+
+  const toggleEditing = (e) => {
+    setEditing(!editing)
   }
 
   const handleChange = (e) => {
-    setEditedCourse({
-      ...course,
-      [e.target.name]: e.target.value,
+    if (e.target.type === 'number') {setEditedCourse({
+      ...editedCourse,
+      [e.target.name]: Number(e.target.value),
       user_id: Number(userId)
+    }) } else (
+      setEditedCourse({
+        ...editedCourse,
+        [e.target.name]: e.target.value,
+        user_id: Number(userId)
+      })
+    )
+  }
+
+  const handleUpdateSubmit = (e) => {
+    e.preventDefault()
+    const loc_id = Number(editedCourse.location_id)
+    setEditedCourse({
+      ...editedCourse,
+      location_id: Number(loc_id)
     })
+    console.log(editedCourse)
+    updateCourse(editedCourse) 
+    toggleEditing()
+  }
+
+  const updateEditedCourse = (e) => {
+    const course = {
+      ...editedCourse,
+      class_name: editedCourse.class_name,
+      class_type: editedCourse.class_type,
+      class_start: editedCourse.class_start,
+      class_duration: editedCourse.class_duration,
+      class_intensity: editedCourse.class_intensity,
+      class_enrolled: editedCourse.class_enrolled,
+      class_max: editedCourse.class_max,
+      location_id: editedCourse.location_id,
+      user_id: editedCourse.user_id
+    }    
+    const id = editedCourseId
+    console.log('course and id for edit', course, id)
+    e.preventDefault()
+		axiosWithAuth()
+			.put(`/courses/${id}`, course)
+			.then((res) => {
+				console.log('updateCourse res', res)
+        history.push('/')
+        history.push('/profile')
+			})
+			.catch((err) => {
+				console.log('updateCourse err', err)
+			})
   }
 
   return (
@@ -74,7 +132,7 @@ const Course = (props) => {
           {
             userRole === 'Instructor' && profilePage ? (
             <div>
-              <button value={course.id} onClick={getCourseToEdit}>Edit</button>
+              <button value={course.id} onClick={toggleEditing}>Edit</button>
               <button value={course.id} onClick={deleteSelectedCourse}>Delete</button>
             </div>
             ) : <> </>
@@ -82,18 +140,16 @@ const Course = (props) => {
         <ColoredLine color="orangered" />
         </div> ) : ( 
         <div className="addCourse">
-        <h3>Add a class</h3>
+        <h3>Edit class</h3>
         <form className="classCreate" >
           <label>
             Class Name:
             <input 
               type="text" 
               name="class_name" 
-              value={editedCourse.class_name}
-              placeholder={editedCourse.class_name}
+              value={course.class_name}
               onChange={handleChange}
               >
-                {editedCourse.class_name}
               </input>
           </label>
           <label>
@@ -137,7 +193,7 @@ const Course = (props) => {
           <label>
             Location:
             <input 
-              type="text" 
+              type="number" 
               name="location_id" 
               value={course.location_id}
               onChange={handleChange}
@@ -153,11 +209,10 @@ const Course = (props) => {
               onChange={handleChange}
               />
           </label>
-          <button name="class_create" onClick={updateCourse, toggleEditing}>Submit</button>
+          <button type='button' name="class_create" onClick={updateEditedCourse}>Submit</button>
         </form>
       </div>
       )}
-      <hr />
     </div>
   );
 };

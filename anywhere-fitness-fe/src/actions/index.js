@@ -73,18 +73,19 @@ export const addNewCourse = (course) => {
 	};
 };
 
-export const updateCourse = (course_id) => {
+export const updateCourse = (course) => {
 	return (dispatch) => {
-		const id = Number(course_id)
+		const id = Number(course.course_id)
 		dispatch({ type: UPDATE_COURSE});
 		axiosWithAuth()
-			.post(`/courses/${id}`)
+			.put(`/courses/${id}`, course)
 			.then((res) => {
-				console.log(res)
+				console.log('updateCourse res', res)
+				dispatch({ type: SUCCESS, payload: res.data });
 				return res.data
 			})
 			.catch((err) => {
-				console.log(err)
+				console.log('updateCourse err', err)
 			})
 	}
 }
