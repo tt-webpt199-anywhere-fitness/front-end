@@ -47,11 +47,11 @@ function App() {
 						Anywhere Fitness
 					</h1>
 					<div className="links">
-						<Link to="/">
-							Home
-						</Link>
 						{token ? (
-							<div className="hidden-div">
+							<div className="links">
+								<Link to="/">
+									Home
+								</Link>
 								<Link to="/profile">
 									Profile
 								</Link>
@@ -74,7 +74,7 @@ function App() {
 									</Link>
 								)}
 								<button
-									className="log-in-out"
+									className="log-out"
 									onClick={() => {
 										logout();
 										history.push(
@@ -86,7 +86,7 @@ function App() {
 								</button>
 							</div>
 						) : homePage ? (
-							<div>
+							<div className="button-container">
 								<Link to="/login">
 									<button className="log-in-out">
 										Login
