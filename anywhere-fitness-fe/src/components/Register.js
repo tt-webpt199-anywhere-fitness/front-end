@@ -22,6 +22,7 @@ export default function Register() {
 	const [formErrors, setFormErrors] = useState(initialFormErrors);
 
 	const onChange = (e) => {
+		inputValidation(e)
 		if (e.target.type === 'checkbox') {
 			setNewUser({
 				...newUser,
