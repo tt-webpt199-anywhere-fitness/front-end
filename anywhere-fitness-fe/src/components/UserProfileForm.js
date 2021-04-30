@@ -2,25 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import Course from './Course';
-import { toggleEditing, updateProfile } from '../actions/index';
-import { getProfile } from '../actions';
-import axios from 'axios';
-
-const initialFormValues = {
-  username: '',
-  password: ''
-}
+import { updateProfile } from '../actions/index';
+// import { getProfile } from '../actions';
+// import axios from 'axios';
 
 const UserProfile = (props) => {
   const userId = Number(localStorage.getItem('id'))
   console.log(userId)
 
-  const [userData, setUserData] = useState()
   const [courses, setCourses] = useState([])
 
   useEffect(() => {
     getUserCourses()
-  }, [])
+  })
   
   const getUserCourses = () => {
     const axios = axiosWithAuth()

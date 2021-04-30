@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory, useRouteMatch } from 'react-router'
 import axiosWithAuth from '../utils/axiosWithAuth'
-import { updateCourse } from '../actions';
+// import { updateCourse } from '../actions';
 
 const initialEditedCourse = {
   class_name: "",
@@ -76,17 +76,17 @@ const Course = (props) => {
     )
   }
 
-  const handleUpdateSubmit = (e) => {
-    e.preventDefault()
-    const loc_id = Number(editedCourse.location_id)
-    setEditedCourse({
-      ...editedCourse,
-      location_id: Number(loc_id)
-    })
-    console.log(editedCourse)
-    updateCourse(editedCourse) 
-    toggleEditing()
-  }
+  // const handleUpdateSubmit = (e) => {
+  //   e.preventDefault()
+  //   const loc_id = Number(editedCourse.location_id)
+  //   setEditedCourse({
+  //     ...editedCourse,
+  //     location_id: Number(loc_id)
+  //   })
+  //   console.log(editedCourse)
+  //   updateCourse(editedCourse) 
+  //   toggleEditing()
+  // }
 
   const updateEditedCourse = (e) => {
     const course = {

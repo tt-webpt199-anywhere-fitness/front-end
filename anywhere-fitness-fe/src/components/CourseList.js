@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Course from "./Course";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import { connect } from "react-redux";
-import { updateCourse } from "../actions";
+// import { connect } from "react-redux";
+// import { updateCourse } from "../actions";
 
 const initialSearchTerms = {
   searchTerm: "",
@@ -38,10 +38,10 @@ const CourseList = () => {
         console.log("Numeric Searchtterm", numericSearchTerm);
 
         const arrayFilter = res.data.filter((course) => {
-          if (search.filterType == "intensity" && numericSearchTerm) {
+          if (search.filterType === "intensity" && numericSearchTerm) {
             const courseIntensity = course[search.filterType];
             return courseIntensity === numericSearchTerm;
-          } else if (search.filterType == "intensity" && !numericSearchTerm) {
+          } else if (search.filterType === "intensity" && !numericSearchTerm) {
             return true;
           } else {
             return course[search.filterType]
@@ -98,17 +98,6 @@ const CourseList = () => {
       </div>
     </div>
   );
-};
-
-const mapStateToProps = (state) => {
-  return {
-    editing: state.course.editing,
-    course: state.course.course,
-    courses: [],
-    isLoading: false,
-    addedCourse: false,
-    error: "",
-  };
 };
 
 export default CourseList;
