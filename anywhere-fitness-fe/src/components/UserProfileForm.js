@@ -12,9 +12,10 @@ const initialFormValues = {
 }
 
 const UserProfile = props => {
-  const userId = localStorage.getItem('id')
+  const userId = Number(localStorage.getItem('id'))
   console.log(userId)
 
+  const [userData, setUserData] = useState()
   const [courses, setCourses] = useState([])
 
   useEffect(() => {

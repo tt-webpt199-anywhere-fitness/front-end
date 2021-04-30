@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import CreateCourse from './components/CreateClass';
 import UserProfile from './components/UserProfileForm';
+import InstructorProfile from './components/InstructorProfileForm'
 import { useState } from 'react';
 
 
@@ -32,6 +33,15 @@ function App() {
   const userRole = localStorage.getItem('role')
   console.log(localStorage)
   const history = useHistory();
+  let roleComponent = ''
+
+  const setRoleComponent = (userType) => {
+    if (userRole === 'Instructor' ) {
+      return InstructorProfile
+    } else if (userRole === 'User') {
+      return UserProfile
+    }
+  }
 
   return (
     <div>
@@ -44,12 +54,12 @@ function App() {
             <div className="divChild1">
              <Link to='/profile' >Profile</Link>
              {
-               userRole === 'Instructor' ? (
-                 <>
+               userRole === 'Instructor' ? 
+               <>
                   <Link to="/create" >Create Class</Link>
                   <Link to="/classes" >Class List</Link> 
                 </>
-                ) : 
+                 : 
                 <Link to="/classes" >Class List</Link>
              }
              <button onClick={()=> {
@@ -70,7 +80,7 @@ function App() {
       <Switch>
         <ProtectedRoute exact path='/classes' component={CourseList} />
         <ProtectedRoute exact path='/create' component={CreateCourse} />
-        <ProtectedRoute path='/profile' component={UserProfile} />
+        <ProtectedRoute path='/profile' component={setRoleComponent(userRole)} />
         <Route path="/login" component={Login}/>
         <Route path="/register" component={Register}/>
       </Switch>

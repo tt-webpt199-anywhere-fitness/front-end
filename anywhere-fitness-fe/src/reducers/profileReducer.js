@@ -1,10 +1,5 @@
 import {
-  TOGGLE_EDITING,
-  UPDATE_PROFILE,
-  FETCH_PROFILE,
-	START_FETCHING,
-	ERROR,
-	SUCCESS,
+  UPDATE_PROFILE
 } from '../actions/index'
 
 export const initialState = {
@@ -22,11 +17,6 @@ export const profileReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
         editing: false
-      }
-    case TOGGLE_EDITING:
-      return {
-        ...state,
-        editing: !state.editing
       }
     default:
       return state;

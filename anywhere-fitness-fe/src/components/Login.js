@@ -53,9 +53,10 @@ export default function Login() {
         credentials
       )
       .then((res) => {
-        console.log(res);
+        console.log('login res', res);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("role", res.data.role);
+        localStorage.setItem("id", res.data.id);
         history.push("/classes");
       })
       .catch((error) => console.log(error));
