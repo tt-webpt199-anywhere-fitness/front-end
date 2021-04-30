@@ -20,7 +20,7 @@ export default function InstructorProfile(props) {
 
   useEffect(() => {
     getUserData()
-  }, [])
+  })
 
   const getUserCourses = () => {
     const axios = axiosWithAuth()
@@ -35,7 +35,7 @@ export default function InstructorProfile(props) {
   
   useEffect(() => {
     getUserCourses()
-  }, [])
+  })
 
   return (
     <div className='instructorProfilePage'>

@@ -22,12 +22,13 @@ export default function CreateCourse(props) {
   
   useEffect(() => {
     getCourses()
-  }, [])
+  })
   
   const getCourses = () => {
     const axios = axiosWithAuth()
     axios.get(`https://anywhere-fitness-wpt199-be.herokuapp.com/api/users/${userId}/courses`)
       .then(res => {
+        console.log(courses)
         console.log('getCourses results', res)
         setCourses(res.data)
       })

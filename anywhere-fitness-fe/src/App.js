@@ -4,11 +4,9 @@ import {
 	Switch,
 	Link,
 	useHistory,
-	useLocation,
 	useRouteMatch,
 } from 'react-router-dom';
 import CourseList from './components/CourseList';
-import Course from './components/Course';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -18,17 +16,12 @@ import UserProfile from './components/UserProfileForm';
 import Footer from './components/Footer';
 import InstructorProfile from './components/InstructorProfileForm'
 
-import { useState } from 'react';
-
 function App() {
 	const logout = () => {
 		localStorage.removeItem('token');
 		localStorage.removeItem('role');
 	};
 
-	const [isSignedIn, setisSignedIn] = useState(
-		localStorage.getItem('id') ? true : false
-	);
 
 	const loginPage = useRouteMatch('/login');
 	const homePage = useRouteMatch({
