@@ -137,6 +137,11 @@ function App() {
 					path="/register"
 					component={Register}
 				/>
+				<Route
+					exact
+					path="/"
+					component={Home}
+				/>
 			</Switch>
 			<Footer />
 		</div>

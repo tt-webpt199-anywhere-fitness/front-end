@@ -137,6 +137,7 @@ img {
 	justify-content: center;
 	align-items: center;
 	height: 100%;
+	background-color: #282c34;
 	/* border: 1px solid yellow; */
 }
 .home-text {
