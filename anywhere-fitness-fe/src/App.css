@@ -2,7 +2,7 @@
 
 .App {
 	text-align: center;
-	background-color: slategrey;
+	background-color: #282c34;
 	width: 100vw;
 }
 
@@ -102,6 +102,10 @@ button {
 	padding: 0.5% 5%;
 }
 
+.log-out {
+	padding: 0.5%;
+}
+
 button:hover {
 	background-color: black;
 	color: orangered;
@@ -155,6 +159,7 @@ img {
 	justify-content: center;
 	align-items: center;
 	height: 100%;
+	background-color: #282c34;
 	/* border: 1px dashed yellow; */
 }
 
@@ -188,6 +193,10 @@ input {
 	padding: 3%;
 }
 
+.course-list {
+	background-color: #282c34;
+}
+
 .course-container {
 	color: orangered;
 	border-radius: 7%;
@@ -207,4 +216,25 @@ input {
 	width: 50%;
 	/* border: 1px dotted red; */
 	display: flex;
+}
+
+.search-bar {
+	margin-top: 1%;
+	width: 90%;
+	display: flex;
+	/* border: 1px solid green; */
+	justify-content: space-between;
+	align-items: center;
+}
+
+.search-bar input {
+	width: 40%;
+	padding: 1%;
+}
+
+.userProfilePage {
+	background-color: #282c34;
+	height: 25vh;
+	color: orangered;
+	padding: 1%;
 }

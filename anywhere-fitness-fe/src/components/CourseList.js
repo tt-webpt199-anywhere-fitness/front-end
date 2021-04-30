@@ -74,8 +74,9 @@ const CourseList = () => {
 	return (
 		<div className="course-list">
 			<form>
-				<label>
-					Search: &nbsp;
+				<div className="search-bar">
+					<label>Search: &nbsp;</label>
+
 					<input
 						type="text"
 						name="searchTerm"
@@ -86,9 +87,10 @@ const CourseList = () => {
 							search.searchTerm
 						}
 					/>
-				</label>
-				<label>
-					&nbsp; Search By:
+					<label>
+						&nbsp; Search By:
+					</label>
+
 					<select
 						name="filterType"
 						onChange={
@@ -121,7 +123,7 @@ const CourseList = () => {
 							Location
 						</option>
 					</select>
-				</label>
+				</div>
 			</form>
 			<div className="courses">
 				{courses &&
