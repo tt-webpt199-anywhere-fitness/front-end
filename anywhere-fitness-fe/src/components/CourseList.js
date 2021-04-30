@@ -41,7 +41,7 @@ const CourseList = () => {
           if (search.filterType == "intensity" && numericSearchTerm) {
             const courseIntensity = course[search.filterType];
             return courseIntensity === numericSearchTerm;
-          } else if (!numericSearchTerm) {
+          } else if (search.filterType == "intensity" && !numericSearchTerm) {
             return true;
           } else {
             return course[search.filterType]
