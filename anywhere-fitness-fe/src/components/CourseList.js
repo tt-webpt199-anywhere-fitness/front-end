@@ -33,14 +33,19 @@ const CourseList = () => {
     axios
       .get(`https://anywhere-fitness-wpt199-be.herokuapp.com/api/courses`)
       .then((res) => {
-        const lowerSearchTerm = search.searchTerm.toLowerCase();
-        console.log(search.searchTerm.toLowerCase());
+        const lowerSearhTerm = search.searchTerm.toLowerCase();
+        const numericSearchTerm = parseInt(search.searchTerm);
+        console.log(search.searchTerm);
 
         const arrayFilter = res.data.filter((course) => {
           console.log(course[search.filterType]);
-          return course[search.filterType]
-            .toLowerCase()
-            .includes(lowerSearchTerm.toString());
+          if (search.filterType === "intensity") {
+            return course[search.filterType].includes(numericSearchTerm);
+          } else {
+            return course[search.filterType]
+              .toLowerCase()
+              .includes(lowerSearhTerm);
+          }
         });
         setCourses(arrayFilter);
       })
